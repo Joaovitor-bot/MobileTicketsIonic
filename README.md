@@ -179,7 +179,7 @@ O projeto foi criado com as seguintes características:
 Clone o repositório:
 
 ```bash
-git https://github.com/Joaovitor-bot/MobileTicketsIonic.git
+git clone https://github.com/Joaovitor-bot/MobileTicketsIonic.git
 ```
 
 Entre na pasta do projeto:
