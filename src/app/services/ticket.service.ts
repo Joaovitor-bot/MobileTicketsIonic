@@ -54,50 +54,42 @@ export class TicketService {
     return senha;
   }
 
-  chamarProximaSenha(guiche: number): Ticket | null {
-    if (!this.expedienteAberto()) {
-      this.descartarSenhasPendentesPorFimDeExpediente();
-      return null;
-    }
-
-    let proxima = this.definirProximaSenha();
-
-    if (!proxima) {
-      return null;
-    }
-
-    if (this.simularNaoAtendimento()) {
-      proxima.descartada = true;
-      proxima.dataDescarte = new Date();
-      proxima.motivoDescarte = 'Cliente não compareceu ao atendimento';
-
-      proxima = this.definirProximaSenha();
-
-      if (!proxima) {
-        return null;
-      }
-    }
-
-    proxima.atendida = true;
-    proxima.dataAtendimento = new Date();
-    proxima.guiche = guiche;
-    proxima.tempoAtendimento = this.calcularTempoAtendimento(proxima.tipo);
-
-    if (proxima.tipo === 'SP') {
-      this.chamarPrioritaria = false;
-    } else {
-      this.chamarPrioritaria = true;
-    }
-
-    this.ultimasChamadas.unshift(proxima);
-    this.ultimasChamadas = this.ultimasChamadas.slice(0, 5);
-
-    return proxima;
+chamarProximaSenha(guiche: number): Ticket | null {
+  if (!this.expedienteAberto()) {
+    this.descartarSenhasPendentesPorFimDeExpediente();
+    return null;
   }
+
+  const proxima = this.definirProximaSenha();
+
+  if (!proxima) {
+    return null;
+  }
+
+  proxima.atendida = true;
+  proxima.dataAtendimento = new Date();
+  proxima.guiche = guiche;
+  proxima.tempoAtendimento = this.calcularTempoAtendimento(proxima.tipo);
+
+  if (proxima.tipo === 'SP') {
+    this.chamarPrioritaria = false;
+  } else {
+    this.chamarPrioritaria = true;
+  }
+
+  this.ultimasChamadas.unshift(proxima);
+  this.ultimasChamadas = this.ultimasChamadas.slice(0, 5);
+
+  return proxima;
+  
+}
 
   expedienteAberto(): boolean {
-    return true;
-  }
+  const agora = new Date();
+  const hora = agora.getHours();
+
+  return hora >= 7 && hora < 17;
+}
 
   private descartarSenhasPendentesPorFimDeExpediente(): void {
     this.senhas.forEach(senha => {
