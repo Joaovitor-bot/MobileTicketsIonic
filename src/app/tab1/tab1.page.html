@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Emitir Senha</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="intro-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="ticket-outline"></ion-icon>
+        Controle de Atendimento
+      </ion-card-title>
+      <ion-card-subtitle>Laboratório Médico</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p class="descricao">
+        Escolha o tipo de senha para entrar na fila de atendimento.
+      </p>
+
+      <div class="tipo-senha">
+        <ion-button expand="block" color="danger" (click)="emitirSenha('SP')">
+          <ion-icon name="accessibility-outline" slot="start"></ion-icon>
+          SP - Senha Prioritária
+        </ion-button>
+
+        <ion-button expand="block" color="success" (click)="emitirSenha('SG')">
+          <ion-icon name="people-outline" slot="start"></ion-icon>
+          SG - Senha Geral
+        </ion-button>
+
+        <ion-button expand="block" color="warning" (click)="emitirSenha('SE')">
+          <ion-icon name="document-text-outline" slot="start"></ion-icon>
+          SE - Retirada de Exames
+        </ion-button>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="senhaGerada" class="senha-gerada">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+        Senha Gerada
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="numero-senha">
+        {{ senhaGerada.numero }}
+      </div>
+
+      <div class="dados-senha">
+        <p><strong>Tipo:</strong> {{ senhaGerada.tipo }}</p>
+        <p><strong>Emitida em:</strong> {{ senhaGerada.dataEmissao | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+      </div>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

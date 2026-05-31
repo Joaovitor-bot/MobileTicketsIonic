@@ -1,0 +1,209 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Relatórios</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="painel-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="tv-outline"></ion-icon>
+        Painel de Chamadas
+      </ion-card-title>
+      <ion-card-subtitle>Últimas 5 senhas chamadas</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngIf="ultimasChamadas.length > 0">
+        <ion-item *ngFor="let senha of ultimasChamadas">
+          <ion-label>
+            <h1>{{ senha.numero }}</h1>
+            <p>Tipo: {{ senha.tipo }} | Guichê: {{ senha.guiche }}</p>
+            <p>{{ senha.dataAtendimento | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <p class="vazio" *ngIf="ultimasChamadas.length === 0">
+        Nenhuma senha chamada ainda.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="resumo-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="analytics-outline"></ion-icon>
+        Resumo Geral
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col>Senhas emitidas:</ion-col>
+          <ion-col>{{ relatorio.emitidas }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>Senhas atendidas:</ion-col>
+          <ion-col>{{ relatorio.atendidas }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>Senhas pendentes:</ion-col>
+          <ion-col>{{ relatorio.pendentes }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>Senhas descartadas:</ion-col>
+          <ion-col>{{ relatorio.descartadas }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="periodo-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="calendar-outline"></ion-icon>
+        Relatório Diário e Mensal
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Período</strong></ion-col>
+          <ion-col><strong>Emitidas</strong></ion-col>
+          <ion-col><strong>Atendidas</strong></ion-col>
+          <ion-col><strong>Descartadas</strong></ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>Diário</ion-col>
+          <ion-col>{{ relatorio.diarioEmitidas }}</ion-col>
+          <ion-col>{{ relatorio.diarioAtendidas }}</ion-col>
+          <ion-col>{{ relatorio.diarioDescartadas }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>Mensal</ion-col>
+          <ion-col>{{ relatorio.mensalEmitidas }}</ion-col>
+          <ion-col>{{ relatorio.mensalAtendidas }}</ion-col>
+          <ion-col>{{ relatorio.mensalDescartadas }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="quantidade-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="layers-outline"></ion-icon>
+        Quantidade por Tipo
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-grid>
+        <ion-row>
+          <ion-col><strong>Tipo</strong></ion-col>
+          <ion-col><strong>Emitidas</strong></ion-col>
+          <ion-col><strong>Atendidas</strong></ion-col>
+          <ion-col><strong>Descartadas</strong></ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>SP</ion-col>
+          <ion-col>{{ relatorio.emitidasSP }}</ion-col>
+          <ion-col>{{ relatorio.atendidasSP }}</ion-col>
+          <ion-col>{{ relatorio.descartadasSP }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>SG</ion-col>
+          <ion-col>{{ relatorio.emitidasSG }}</ion-col>
+          <ion-col>{{ relatorio.atendidasSG }}</ion-col>
+          <ion-col>{{ relatorio.descartadasSG }}</ion-col>
+        </ion-row>
+
+        <ion-row>
+          <ion-col>SE</ion-col>
+          <ion-col>{{ relatorio.emitidasSE }}</ion-col>
+          <ion-col>{{ relatorio.atendidasSE }}</ion-col>
+          <ion-col>{{ relatorio.descartadasSE }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="tempo-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="time-outline"></ion-icon>
+        Tempo Médio de Atendimento
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>Tempo médio geral: {{ relatorio.tempoMedioGeral }} minuto(s)</p>
+      <p>Tempo médio SP: {{ relatorio.tempoMedioSP }} minuto(s)</p>
+      <p>Tempo médio SG: {{ relatorio.tempoMedioSG }} minuto(s)</p>
+      <p>Tempo médio SE: {{ relatorio.tempoMedioSE }} minuto(s)</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="detalhado-card">
+    <ion-card-header>
+      <ion-card-title>
+        <ion-icon name="document-text-outline"></ion-icon>
+        Relatório Detalhado
+      </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngIf="senhas.length > 0">
+        <ion-item *ngFor="let senha of senhas">
+          <ion-label>
+            <h2>{{ senha.numero }}</h2>
+
+            <p><strong>Tipo:</strong> {{ senha.tipo }}</p>
+            <p><strong>Emitida:</strong> {{ senha.dataEmissao | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+
+            <p *ngIf="senha.atendida">
+              <strong>Atendida:</strong> {{ senha.dataAtendimento | date:'dd/MM/yyyy HH:mm:ss' }}
+            </p>
+
+            <p *ngIf="senha.atendida">
+              <strong>Guichê:</strong> {{ senha.guiche }} | <strong>Tempo:</strong> {{ senha.tempoAtendimento }} minuto(s)
+            </p>
+
+            <p *ngIf="senha.descartada">
+              <strong>Status:</strong> descartada
+            </p>
+
+            <p *ngIf="senha.descartada && senha.motivoDescarte">
+              <strong>Motivo:</strong> {{ senha.motivoDescarte }}
+            </p>
+
+            <p *ngIf="senha.descartada && senha.dataDescarte">
+              <strong>Descartada em:</strong> {{ senha.dataDescarte | date:'dd/MM/yyyy HH:mm:ss' }}
+            </p>
+
+            <p *ngIf="!senha.atendida && !senha.descartada">
+              <strong>Status:</strong> aguardando atendimento
+            </p>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+
+      <p class="vazio" *ngIf="senhas.length === 0">
+        Nenhuma senha emitida ainda.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

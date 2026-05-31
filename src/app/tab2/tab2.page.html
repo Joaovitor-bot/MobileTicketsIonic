@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>Atendimento</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+
+  <ion-card class="guiche-card">
+    <ion-card-header>
+      <ion-card-title>Chamada de Atendimento</ion-card-title>
+      <ion-card-subtitle>Guichê automático</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="guiche-atual">
+        <strong>Guichê {{ guiche }}</strong>
+      </div>
+
+      <ion-button expand="block" color="primary" (click)="chamarProxima()">
+        Chamar próxima senha
+      </ion-button>
+
+      <p class="regra">
+        Ordem de atendimento: <strong>SP → SE/SG → SP → SE/SG</strong>
+      </p>
+
+      <p class="mensagem">{{ mensagem }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="senhaChamada" class="senha-chamada">
+    <ion-card-header>
+      <ion-card-title>Senha Chamada</ion-card-title>
+      <ion-card-subtitle>Atendimento iniciado</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <div class="numero-senha">
+        {{ senhaChamada.numero }}
+      </div>
+
+      <p>Tipo: {{ senhaChamada.tipo }}</p>
+      <p>Guichê: {{ senhaChamada.guiche }}</p>
+      <p>Tempo simulado: {{ senhaChamada.tempoAtendimento }} minuto(s)</p>
+      <p>Atendida em: {{ senhaChamada.dataAtendimento | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="fila-card">
+    <ion-card-header>
+      <ion-card-title>Senhas Pendentes</ion-card-title>
+      <ion-card-subtitle>Fila aguardando atendimento</ion-card-subtitle>
+    </ion-card-header>
+
+    <ion-card-content>
+      <ion-list *ngIf="pendentes.length > 0">
+        <ion-item *ngFor="let senha of pendentes">
+          <ion-label>
+            <h2>{{ senha.numero }}</h2>
+            <p>Tipo: {{ senha.tipo }}</p>
+            <p>Emitida: {{ senha.dataEmissao | date:'dd/MM/yyyy HH:mm:ss' }}</p>
+          </ion-label>
+
+          <ion-button color="danger" fill="outline" size="small" (click)="descartarSenha(senha.numero)">
+            Descartar
+          </ion-button>
+        </ion-item>
+      </ion-list>
+
+      <p class="sem-senha" *ngIf="pendentes.length === 0">
+        Nenhuma senha pendente.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
