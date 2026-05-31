@@ -209,9 +209,9 @@ As imagens do projeto estão localizadas em:
 ```text
 src/assets/screens/tela1.png
 src/assets/screens/tela2.png
-src/assets/screens/tela2-continuacao.png
+src/assets/screens/tela2continuação.png
 src/assets/screens/tela3.png
-src/assets/screens/tela3-continuacao.png
+src/assets/screens/tela3continuação.png
 ```
 
 ---
