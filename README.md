@@ -242,13 +242,19 @@ src/assets/screens/tela3continuação.png
 
 ---
 
-## 👨‍💻 ALuno 
+## 👨‍💻 ALunos 
 
 **João Vitor Rodrigues da Silva** - 01747616<br>
+
 **Eychila Meirelle da Silva** - 01567091<br>
+
 **Maria Clara Trevizane Buonafina** - 01747760<br>
+
 **Maria Eduarda Trevizane Buonafina** - 01748239<br>
+
 **Luís Fernando Andrade da Silva** - 01747654<br>
+
+**Emilly Dantas da Silva Bento** - 0164529<br>
 ---
 
 ## 📄 Licença
