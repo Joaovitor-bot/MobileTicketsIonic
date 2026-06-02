@@ -103,6 +103,32 @@ O sistema considera o expediente de atendimento das:
 
 Caso existam senhas pendentes ao final do expediente, elas podem ser descartadas sem execução do atendimento.
 
+A validação do expediente está localizada no arquivo:
+
+```text
+src/app/services/ticket.service.ts
+```
+Na função :
+
+```text
+expedienteAberto(): boolean {
+  const agora = new Date();
+  const hora = agora.getHours();
+
+  return hora >= 7 && hora < 17;
+}
+```
+Com essa regra, o sistema só permite chamadas de atendimento entre 07h e 17h.
+
+Caso seja necessário testar o sistema fora desse horário, a função pode ser alterada temporariamente para:
+
+```text
+expedienteAberto(): boolean {
+  return true;
+}
+```
+Essa alteração libera as chamadas de atendimento em qualquer horário apenas para fins de teste ou apresentação.
+
 ---
 
 ## 📊 Relatórios
@@ -216,9 +242,13 @@ src/assets/screens/tela3continuação.png
 
 ---
 
-## 👨‍💻 ALuno
+## 👨‍💻 ALuno 
 
-**João Vitor Rodrigues da Silva**
+**João Vitor Rodrigues da Silva - 01747616**
+**Eychila Meirelle da Silva - 01567091**
+**Maria Clara Trevizane Buonafina - 01747760**
+**Maria Eduarda Trevizane Buonafina - 01748239**
+**Luís Fernando Andrade da Silva - 01747654**
 
 ---
 
