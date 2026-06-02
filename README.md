@@ -255,6 +255,7 @@ src/assets/screens/tela3continuação.png
 **Luís Fernando Andrade da Silva** - 01747654<br>
 
 **Emilly Dantas da Silva Bento** - 0164529<br>
+
 ---
 
 ## 📄 Licença
