@@ -244,12 +244,11 @@ src/assets/screens/tela3continuação.png
 
 ## 👨‍💻 ALuno 
 
-**João Vitor Rodrigues da Silva - 01747616**
-**Eychila Meirelle da Silva - 01567091**
-**Maria Clara Trevizane Buonafina - 01747760**
-**Maria Eduarda Trevizane Buonafina - 01748239**
-**Luís Fernando Andrade da Silva - 01747654**
-
+**João Vitor Rodrigues da Silva** - 01747616<br>
+**Eychila Meirelle da Silva** - 01567091<br>
+**Maria Clara Trevizane Buonafina** - 01747760<br>
+**Maria Eduarda Trevizane Buonafina** - 01748239<br>
+**Luís Fernando Andrade da Silva** - 01747654<br>
 ---
 
 ## 📄 Licença
